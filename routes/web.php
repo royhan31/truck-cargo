@@ -12,5 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+
+//Auth::routes();
+
+Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login','Auth\LoginController@login')->name('admin.login');
+Route::post('/beranda','Auth\LoginController@logout')->name('logout');
+
+Route::get('/beranda', 'DashboardController@index')->name('dashboard');
+Route::get('/penimbangan','CargoController@index')->name('cargo');
+
+Route::get('/laporan','ReportController@index')->name('report');
