@@ -83,7 +83,7 @@
 	<!-- .col-* -->
 </div>
 <!-- .row -->
-<div class="row">
+<!-- <div class="row">
 	<!-- Yearly Visitors -->
 	<div class="col-xs-12 col-md-12">
 		<div class="with_background with_padding">
@@ -94,19 +94,7 @@
 	<!-- Monthly Visitors -->
 
 	<!-- .col-* -->
-</div>
-<div class="row">
-	<!-- Yearly Visitors -->
-	<div class="col-xs-12 col-md-12">
-		<div class="with_background with_padding">
-			<canvas class="canvas-chart-line-monthly-visitors"></canvas>
-		</div>
-	</div>
-	<!-- .col-* -->
-	<!-- Monthly Visitors -->
-
-	<!-- .col-* -->
-</div>
+</div> -->
 
 <!-- .row -->
 

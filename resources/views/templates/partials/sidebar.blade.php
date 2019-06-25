@@ -30,7 +30,7 @@
             <li class="@if(Request::is('beranda')) active @endif">
               <a href="{{route('dashboard')}}">
                 <i class="fa fa-desktop fa-lg"></i>
-                Dashboard
+                Beranda
               </a>
             </li>
             <li class="@if(Request::is('penimbangan')) active @endif">
