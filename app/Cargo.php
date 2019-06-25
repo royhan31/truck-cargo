@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cargo extends Model
 {
-    protected $guraded = [];
+    protected $fillable = ['plat_nomor','berat','nama_supir','tanggal'];
     public $timestamps = false;
 }

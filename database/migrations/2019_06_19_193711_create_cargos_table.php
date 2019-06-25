@@ -19,7 +19,6 @@ class CreateCargosTable extends Migration
             $table->integer('berat');
             $table->string('nama_supir',30);
             $table->date('tanggal');
-            //$table->timestamps();
         });
     }
 

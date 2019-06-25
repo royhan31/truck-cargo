@@ -8,16 +8,32 @@
 </div>
 @if(Session::has('success'))
 <div class="alert alert-success" role="alert">
-	<strong>Berhasil</strong>{{Session::get('success')}}
+	<strong>{{Session::get('success')}}</strong>
 </div>
 @endif
+@error('plat_nomor')
+<div class="alert alert-danger" role="alert">
+	<strong>Gagal! Plat nomor tidak benar </strong>
+</div>
+@enderror
+@error('berat')
+<div class="alert alert-danger" role="alert">
+	<strong>Gagal! Berat minimal 100 kg </strong>
+</div>
+@enderror
+@error('nama_supir')
+<div class="alert alert-danger" role="alert">
+	<strong>Gagal! Nama supir tidak benar </strong>
+</div>
+@enderror
 
 <div class="row">
 	<div class="col-xs-12 col-12">
 		<div class="with_background with_padding">
-			<form class="form-inline">
+			<form class="form-inline" action="{{route('cargo.store')}}" method="post">
+				@csrf
 				<div class="form-group">
-					<input type="text" name="plat_nomor" value="{{old('plat_nomor')}}" class="form-control" placeholder="Plat Nomor" required>
+					<input type="text" name="plat_nomor" value="{{old('plat_nomor')}}" class="form-control is" placeholder="Plat Nomor" required>
 				</div>
 				<div class="form-group">
 					<input type="text" id="berat" name="berat" value="{{old('berat')}}" class="form-control" placeholder="Berat" required>
@@ -25,7 +41,7 @@
 				<div class="form-group">
 					<input type="text" name="nama_supir" value="{{old('nama_supir')}}" class="form-control" placeholder="Nama Supir" required>
 				</div>
-				<button type="submit" class="theme_button color1">Submit</button>
+				<button type="submit" class="theme_button color1">Simpan</button>
 				</form>
 			</div>
 		</div>
@@ -41,21 +57,26 @@
 							<th>No plat</th>
 							<th>Berat/Kg</th>
               <th>Nama Supir</th>
+							<th>Tanggal</th>
 							<th width="12%">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
 						@php($no = 1)
+						@foreach($cargos as $cargo)
 						<tr>
-							<td rowspan="2">{{$no}}</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td></td>
+							<td>{{$no}}</td>
+							<td>{{$cargo->plat_nomor}}</td>
+							<td>{{number_format($cargo->berat,0,',','.')}}</td>
+							<td>{{$cargo->nama_supir}}</td>
+							<td>{{date('d M Y',strtotime($cargo->tanggal))}}</td>
               <td>
                 <a href="#"> <i class="fa fa-pencil fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="#"> <i class="fa fa-trash fa-lg"></i></a>
               </td>
 						</tr>
+						@php($no++)
+						@endforeach
 					</tbody>
 				</table>
 			</div>

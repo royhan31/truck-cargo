@@ -53,16 +53,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-sm-12">
-												<div class="checkbox">
-													<label>
-														<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Rememrber Me
-													</label>
-												</div>
-											</div>
-										</div>
-										<button type="submit" class="theme_button block_button color1">Log In</button>
+										<button type="submit" class="theme_button block_button color1">Masuk</button>
 									</form>
 								</div>
 

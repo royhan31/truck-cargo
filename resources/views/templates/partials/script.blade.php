@@ -12,7 +12,7 @@ $(document).ready(function() {
 </script>
 <script>
 window.setTimeout(function() {
-  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+  $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
   $(this).remove();
 });
 }, 5000);
@@ -43,75 +43,3 @@ berat = split[1] != undefined ? berat + ',' + split[1] : berat;
 return prefix == undefined ? berat : (berat ? 'Rp. ' + berat : '');
 }
 </script>
-@if(Request::is('beranda'))
-<script>
-(function() {
-  //Global Defaults
-  Chart.defaults.global.defaultFontColor = '#444';
-  Chart.defaults.global.defaultFontFamily = 'sans-serif';
-  Chart.defaults.global.defaultFontSize = 11;
-  //Yearly visitors
-  var $canvasesYearlyVisitors = jQuery('.canvas-chart-line-yearly-visitors');
-  if ($canvasesYearlyVisitors.length) {
-    $canvasesYearlyVisitors.each(function(i){
-
-      var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var config = {
-        type: 'line',
-        data: {
-          labels: MONTHS,
-          datasets: [{
-            label: "Unique Visitors",
-            backgroundColor: 'rgba(244, 161, 21, 0.5)',
-            borderColor: 'rgba(244, 161, 21, 0.5)',
-                        borderWidth: '0',
-                        tension: '0',
-            //visitors per month
-            data: [20, 50, 80, 100, 300, 500, 800, 1000, 900, 700, 1000, 1100],
-            fill: true,
-          },
-          //put new dataset here if needed to show multiple datasets on one graph
-          ]
-        },
-        options: {
-          responsive: true,
-          title:{
-            display:true,
-            text:'Yearly Visitors'
-          },
-          tooltips: {
-            mode: 'index',
-            intersect: false,
-          },
-          hover: {
-            mode: 'nearest',
-            intersect: true
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Month'
-              }
-            }],
-            yAxes: [{
-              display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Visitors'
-              }
-            }]
-          }
-        }
-      };
-
-
-      var canvas = jQuery(this)[0].getContext("2d");;
-
-      new Chart(canvas, config);
-    });
-  }
-})();
-</script>
-@endif

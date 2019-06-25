@@ -15,9 +15,7 @@
             <h4>Truck Cargo</h4>
             <ul class="nav vertical-nav">
               <li class="">
-
                   {{Auth::user()->name}}
-
               </li>
             </ul>
           </div>
