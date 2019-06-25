@@ -19,6 +19,7 @@ window.setTimeout(function() {
 </script>
 <script>
 var tanpa_huruf = document.getElementById('berat');
+//var tanpa_huruf = document.getElementById('berat2');
 tanpa_huruf.addEventListener('keyup', function(e)
 {
 tanpa_huruf.value = formatberat(this.value);
@@ -40,6 +41,33 @@ berat += separator + ribuan.join('.');
 }
 
 berat = split[1] != undefined ? berat + ',' + split[1] : berat;
-return prefix == undefined ? berat : (berat ? 'Rp. ' + berat : '');
+return prefix == undefined ? berat : (berat ? '' + berat : '');
+}
+</script>
+<script>
+var tanpa_huruf2 = document.getElementById('berat2');
+//var tanpa_huruf = document.getElementById('berat2');
+tanpa_huruf2.addEventListener('keyup', function(e)
+{
+tanpa_huruf2.value = formatberat(this.value);
+});
+
+
+/* Fungsi */
+function formatberat(angka, prefix)
+{
+var number_string = angka.replace(/[^,\d]/g, '').toString(),
+split    = number_string.split(','),
+sisa     = split[0].length % 3,
+berat     = split[0].substr(0, sisa),
+ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+
+if (ribuan) {
+separator = sisa ? '.' : '';
+berat += separator + ribuan.join('.');
+}
+
+berat = split[1] != undefined ? berat + ',' + split[1] : berat;
+return prefix == undefined ? berat : (berat ? '' + berat : '');
 }
 </script>

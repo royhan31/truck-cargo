@@ -36,7 +36,7 @@
 					<input type="text" name="plat_nomor" value="{{old('plat_nomor')}}" class="form-control is" placeholder="Plat Nomor" required>
 				</div>
 				<div class="form-group">
-					<input type="text" id="berat" name="berat" value="{{old('berat')}}" class="form-control" placeholder="Berat" required>
+					<input type="text" name="berat" id="berat" value="{{old('berat')}}" class="form-control" placeholder="Berat" required>
 				</div>
 				<div class="form-group">
 					<input type="text" name="nama_supir" value="{{old('nama_supir')}}" class="form-control" placeholder="Nama Supir" required>
@@ -71,11 +71,68 @@
 							<td>{{$cargo->nama_supir}}</td>
 							<td>{{date('d M Y',strtotime($cargo->tanggal))}}</td>
               <td>
-                <a href="#"> <i class="fa fa-pencil fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="#"> <i class="fa fa-trash fa-lg"></i></a>
+                <a href="#" data-toggle="modal" data-target="#edit{{$cargo->id}}"> <i class="fa fa-pencil fa-lg"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="#" data-toggle="modal" data-target="#hapus{{$cargo->id}}"> <i class="fa fa-trash fa-lg"></i></a>
               </td>
 						</tr>
 						@php($no++)
+						<!-- Modal Edit -->
+							<div id="edit{{$cargo->id}}" class="modal fade" role="dialog">
+							  <div class="modal-dialog">
+							    <!-- Modal content-->
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal">&times;</button>
+							        <h4 class="modal-title">Data Edit</h4>
+							      </div>
+							      <div class="modal-body">
+									<form action="{{route('cargo.update', $cargo)}}" method="post">
+										@csrf
+										@method('PATCH')
+									<div class="form-group">
+										<label>Plat Nomor</label>
+										<input type="text" name="plat_nomor" value="{{$cargo->plat_nomor}}" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>Berat</label>
+										<input type="text" name="berat" id="berat2" value="{{number_format($cargo->berat,0,',','.')}}" value="{{old('berat')}}" class="form-control" placeholder="Berat" required>
+									</div>
+									<div class="form-group">
+										<label>Nama Supir</label>
+										<input type="text" name="nama_supir" value="{{$cargo->nama_supir}}" class="form-control">
+									</div>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+											<button type="submit" class="theme_button">Simpan</button>
+							      </div>
+										</form>
+							    </div>
+
+							  </div>
+							</div>
+							<div id="hapus{{$cargo->id}}" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">Data Hapus</h4>
+										</div>
+										<div class="modal-body">
+									<form action="{{route('cargo.destroy', $cargo)}}" method="post">
+										@csrf
+										<p> <strong>Apakah anda yakin akan menghapus data ini ?</strong></p>
+									</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+											<button type="submit" class="theme_button">Hapus</button>
+										</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
 						@endforeach
 					</tbody>
 				</table>

@@ -24,5 +24,7 @@ Route::post('/beranda','Auth\LoginController@logout')->name('logout');
 Route::get('/beranda', 'CargoController@index')->name('dashboard');
 Route::get('/penimbangan','CargoController@create')->name('cargo');
 Route::post('/penimbangan','CargoController@store')->name('cargo.store');
+Route::patch('/penimbangan/{cargo}','CargoController@update')->name('cargo.update');
+Route::post('/penimbangan/{cargo}','CargoController@destroy')->name('cargo.destroy');
 
 Route::get('/laporan','ReportController@index')->name('report');
